@@ -38,9 +38,9 @@ const SB_URL="https://yiewhwcobngvscavalrv.supabase.co", SB_KEY="sb_publishable_
 const DELIVERY=100;
 // =========================================================================
 const sb=supabase.createClient(SB_URL,SB_KEY);
-const L={bn:{search:"গিফট খুঁজুন...",add:"কার্টে যোগ",empty:"কার্ট খালি",total:"মোট",dl:"ডেলিভারি চার্জ",name:"পুরো নাম",phone:"ফোন (01XXXXXXXXX)",addr:"পূর্ণ ঠিকানা",order:"অর্ডার করুন (ক্যাশ অন ডেলিভারি)",fill:"সব ঘর সঠিকভাবে পূরণ করুন",done:"অর্ডার হয়েছে! নিশ্চিত করতে আমরা ফোন করব।",home:"হোম",orders:"অর্ডার",prods:"প্রোডাক্ট",team:"টিম",login:"লগইন",logout:"লগআউট",email:"ইমেইল",pass:"পাসওয়ার্ড (৬+ অক্ষর)",signup:"নতুন অ্যাকাউন্ট",newp:"নতুন প্রোডাক্ট",pbn:"নাম (বাংলা)",pen:"Name (English)",ppr:"দাম (৳)",save:"সেভ",del:"মুছুন",none:"কিছু নেই",refresh:"রিফ্রেশ",addm:"মেম্বার যোগ করুন (আগে সে সাইন-আপ করবে)",st:{new:"নতুন",confirmed:"নিশ্চিত",delivered:"ডেলিভারি হয়েছে",cancelled:"বাতিল"},cats:{all:"🎁 সব",flower:"💐 ফুল",cake:"🎂 কেক",toy:"🧸 খেলনা",jewel:"💍 গয়না",combo:"🎀 কম্বো"},err:"সমস্যা হয়েছে: "},
-en:{search:"Search gifts...",add:"Add to cart",empty:"Cart is empty",total:"Total",dl:"Delivery charge",name:"Full name",phone:"Phone (01XXXXXXXXX)",addr:"Full address",order:"Place order (Cash on Delivery)",fill:"Please fill all fields correctly",done:"Order placed! We will call to confirm.",home:"Home",orders:"Orders",prods:"Products",team:"Team",login:"Login",logout:"Logout",email:"Email",pass:"Password (6+ chars)",signup:"Create account",newp:"New product",pbn:"Name (Bangla)",pen:"Name (English)",ppr:"Price (৳)",save:"Save",del:"Delete",none:"Nothing here",refresh:"Refresh",addm:"Add member (they must sign up first)",st:{new:"New",confirmed:"Confirmed",delivered:"Delivered",cancelled:"Cancelled"},cats:{all:"🎁 All",flower:"💐 Flowers",cake:"🎂 Cakes",toy:"🧸 Toys",jewel:"💍 Jewellery",combo:"🎀 Combo"},err:"Error: "}};
-let S={lang:"bn",tab:"home",cat:"all",q:"",cart:{},prods:[],orders:[],staff:[],role:null,atab:"orders"};
+const L={bn:{search:"পণ্য খুঁজুন...",add:"কার্টে যোগ",empty:"কার্ট খালি",total:"মোট",dl:"ডেলিভারি চার্জ",name:"পুরো নাম",phone:"ফোন (01XXXXXXXXX)",addr:"পূর্ণ ঠিকানা",order:"অর্ডার করুন (ক্যাশ অন ডেলিভারি)",fill:"সব ঘর সঠিকভাবে পূরণ করুন",done:"অর্ডার হয়েছে! নিশ্চিত করতে আমরা ফোন করব।",home:"হোম",orders:"অর্ডার",prods:"প্রোডাক্ট",team:"টিম",login:"লগইন",logout:"লগআউট",email:"ইমেইল",pass:"পাসওয়ার্ড (৬+ অক্ষর)",signup:"নতুন অ্যাকাউন্ট",newp:"নতুন প্রোডাক্ট",pbn:"নাম (বাংলা)",pen:"Name (English)",ppr:"দাম (৳)",save:"সেভ",del:"মুছুন",none:"কিছু নেই",refresh:"রিফ্রেশ",addm:"মেম্বার যোগ করুন (আগে সে সাইন-আপ করবে)",st:{new:"নতুন",confirmed:"নিশ্চিত",delivered:"ডেলিভারি হয়েছে",cancelled:"বাতিল"},cats:{all:"🛍️ সব",shirt:"👔 শার্ট",tshirt:"👕 টি-শার্ট",genji:"🎽 গেঞ্জি",anniv:"💑 অ্যানিভার্সারি কম্বো",bday:"🎂 বার্থডে গিফট"},err:"সমস্যা হয়েছে: ",myorders:"আমার অর্ডার",lnote:"কাস্টমার: নতুন অ্যাকাউন্ট খুলে লগইন করলে আপনার অর্ডারের হিস্টোরি দেখতে পাবেন।"},
+en:{search:"Search products...",add:"Add to cart",empty:"Cart is empty",total:"Total",dl:"Delivery charge",name:"Full name",phone:"Phone (01XXXXXXXXX)",addr:"Full address",order:"Place order (Cash on Delivery)",fill:"Please fill all fields correctly",done:"Order placed! We will call to confirm.",home:"Home",orders:"Orders",prods:"Products",team:"Team",login:"Login",logout:"Logout",email:"Email",pass:"Password (6+ chars)",signup:"Create account",newp:"New product",pbn:"Name (Bangla)",pen:"Name (English)",ppr:"Price (৳)",save:"Save",del:"Delete",none:"Nothing here",refresh:"Refresh",addm:"Add member (they must sign up first)",st:{new:"New",confirmed:"Confirmed",delivered:"Delivered",cancelled:"Cancelled"},cats:{all:"🛍️ All",shirt:"👔 Shirt",tshirt:"👕 T-shirt",genji:"🎽 Genji",anniv:"💑 Anniversary Combo",bday:"🎂 Birthday Gift"},err:"Error: ",myorders:"My orders",lnote:"Customers: create an account and log in to see your order history."}};
+let S={lang:"bn",tab:"home",cat:"all",q:"",cart:{},prods:[],orders:[],staff:[],role:null,atab:"orders",my:[],user:null};
 const $=s=>document.querySelector(s),t=()=>L[S.lang],tk=n=>"৳"+Number(n).toLocaleString("en-US");
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const pic=(p,z)=>p.image_url?`<img src="${esc(p.image_url)}" alt="" style="width:${z}px;height:${z}px;object-fit:cover;border-radius:10px">`:`<span style="font-size:${Math.round(z*.75)}px">${esc(p.icon)}</span>`;
@@ -52,12 +52,13 @@ const fail=e=>alert(t().err+(e.message||e));
 
 async function loadProds(){const{data}=await sb.from("products").select("*").order("created_at");S.prods=data||[]}
 async function loadOrders(){if(!S.role)return;const{data}=await sb.from("orders").select("*").order("created_at",{ascending:false}).limit(100);S.orders=data||[]}
+async function loadMy(){if(!S.user)return;const{data}=await sb.from("orders").select("*").eq("user_id",S.user.id).order("created_at",{ascending:false});S.my=data||[]}
 async function loadStaff(){if(S.role!=="owner")return;const{data}=await sb.rpc("list_staff");S.staff=data||[]}
-async function loadRole(){const{data:{session}}=await sb.auth.getSession();S.role=null;
+async function loadRole(){const{data:{session}}=await sb.auth.getSession();S.role=null;S.user=session?session.user:null;
  if(session){const{data}=await sb.from("staff").select("role").eq("user_id",session.user.id).maybeSingle();S.role=data?data.role:null}}
 
 function head(){const x=t();$("#lb").textContent=S.lang==="bn"?"EN":"বাং";
- $("#cb").textContent="🛒 "+Object.values(S.cart).reduce((a,b)=>a+b,0);$("#ab").textContent=S.role?"⚙️ "+x.orders:"👤";}
+ $("#cb").textContent="🛒 "+Object.values(S.cart).reduce((a,b)=>a+b,0);$("#ab").textContent=S.role?"⚙️ "+x.orders:S.user?"👤 "+x.myorders:"👤";}
 
 function render(){head();const x=t(),a=$("#app");
 if(S.tab==="home"){
@@ -72,7 +73,9 @@ if(S.tab==="home"){
  a.innerHTML=`<div class="pad"><button class="btn s" data-go="home">← ${x.home}</button>`+(its.length?its.map(p=>`<div class="row">${pic(p,46)}<div><div class="pn">${esc(nm(p))}</div><div class="pr">${tk(p.price*S.cart[p.id])}</div></div><div class="q"><button data-q="${p.id}" data-d="-1">−</button> ${S.cart[p.id]} <button data-q="${p.id}" data-d="1">+</button></div></div>`).join("")+
  `<p class="note">${x.dl}: ${tk(DELIVERY)}</p><h2>${x.total}: ${tk(sub+DELIVERY)}</h2><input id="fn" placeholder="${x.name}"><input id="fp" placeholder="${x.phone}" inputmode="tel" maxlength="11"><textarea id="fa" rows="3" placeholder="${x.addr}"></textarea><button class="btn" id="po">${x.order}</button>`:`<p class="note">${x.empty}</p>`)+`</div>`;
 }else if(S.tab==="login"){
- a.innerHTML=`<div class="pad"><button class="btn s" data-go="home">← ${x.home}</button><h2>${x.login}</h2><input id="le" type="email" placeholder="${x.email}"><input id="lp" type="password" placeholder="${x.pass}"><button class="btn" id="li">${x.login}</button><button class="btn s" id="su">${x.signup}</button></div>`;
+ a.innerHTML=`<div class="pad"><button class="btn s" data-go="home">← ${x.home}</button><h2>${x.login}</h2><p class="note">${x.lnote}</p><input id="le" type="email" placeholder="${x.email}"><input id="lp" type="password" placeholder="${x.pass}"><button class="btn" id="li">${x.login}</button><button class="btn s" id="su">${x.signup}</button></div>`;
+}else if(S.tab==="my"){
+ a.innerHTML=`<div class="pad"><button class="btn s" data-go="home">← ${x.home}</button><h2>${x.myorders}</h2>`+(S.my.map(o=>`<div class="row" style="display:block;margin-top:8px"><span class="tag">${x.st[o.status]||o.status}</span> <span class="note">${new Date(o.created_at).toLocaleDateString()}</span><div class="note">${(o.items||[]).map(i=>esc(i.name)+" ×"+Number(i.qty)).join(", ")}</div><div class="pr">${tk(o.total)}</div></div>`).join("")||`<p class="note">${x.none}</p>`)+`<button class="btn s" id="lo">${x.logout}</button></div>`;
 }else{
  const tabs=["orders",...(can("pm")?["prods"]:[]),...(can("owner")?["team"]:[])];
  a.innerHTML=`<div class="pad"><button class="btn s" data-go="home">← ${x.home}</button></div><div class="chips">${tabs.map(k=>`<button class="chip ${S.atab===k?"on":""}" data-at="${k}">${x[k]}</button>`).join("")}<button class="chip" id="lo">${x.logout}</button></div>`+
@@ -89,10 +92,10 @@ else if(d.go){S.tab=d.go;render()}
 else if(d.q){const v=(S.cart[d.q]||0)+Number(d.d);if(v<=0)delete S.cart[d.q];else S.cart[d.q]=v;render()}
 else if(d.at){S.atab=d.at;if(d.at==="orders")await loadOrders();if(d.at==="team")await loadStaff();render()}
 else if(id==="rf"){await loadOrders();render()}
-else if(id==="lo"){await sb.auth.signOut();S.role=null;S.tab="home";render()}
+else if(id==="lo"){await sb.auth.signOut();S.role=null;S.user=null;S.my=[];S.tab="home";render()}
 else if(id==="li"||id==="su"){const em=$("#le").value.trim(),pw=$("#lp").value;
  const r=id==="li"?await sb.auth.signInWithPassword({email:em,password:pw}):await sb.auth.signUp({email:em,password:pw});
- if(r.error)return fail(r.error);await loadRole();if(S.role){await loadOrders();await loadProds();S.tab="admin"}else{alert("OK. Owner-ke bolo apnake team-e add korte.");S.tab="home"}render()}
+ if(r.error)return fail(r.error);await loadRole();if(S.role){await loadOrders();await loadProds();S.tab="admin"}else{await loadMy();S.tab="my"}render()}
 else if(id==="po"){const n=$("#fn").value.trim(),p=$("#fp").value.trim(),ad=$("#fa").value.trim();
  if(!n||!/^01\d{9}$/.test(p)||!ad)return alert(x.fill);
  const its=S.prods.filter(q=>S.cart[q.id]);
@@ -112,8 +115,8 @@ else if(d.rm){const{error}=await sb.rpc("remove_staff",{p_email:d.rm});if(error)
 document.addEventListener("change",async e=>{if(e.target.dataset.os){const{error}=await sb.from("orders").update({status:e.target.value}).eq("id",e.target.dataset.os);if(error)fail(error)}});
 $("#lb").onclick=()=>{S.lang=S.lang==="bn"?"en":"bn";render()};
 $("#cb").onclick=()=>{S.tab="cart";render()};
-$("#ab").onclick=async()=>{if(S.role){await loadOrders();S.tab="admin"}else S.tab="login";render()};
-(async()=>{render();await loadProds();await loadRole();if(S.role)await loadOrders();render();setInterval(async()=>{if(S.tab==="admin"&&S.atab==="orders"){await loadOrders();render()}},30000)})();
+$("#ab").onclick=async()=>{if(S.role){await loadOrders();S.tab="admin"}else if(S.user){await loadMy();S.tab="my"}else S.tab="login";render()};
+(async()=>{render();await loadProds();await loadRole();if(S.role)await loadOrders();else if(S.user)await loadMy();render();setInterval(async()=>{if(S.tab==="admin"&&S.atab==="orders"){await loadOrders();render()}},30000)})();
 </script>
 </body>
 </html>
