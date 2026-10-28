@@ -7,8 +7,8 @@
  "scope": "./",
  "display": "standalone",
  "orientation": "portrait",
- "background_color": "#111111",
- "theme_color": "#111111",
+ "background_color": "#feee00",
+ "theme_color": "#feee00",
  "lang": "bn",
  "categories": [
   "shopping",
